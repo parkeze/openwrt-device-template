@@ -8,6 +8,11 @@ repo is named `openwrt-<model>`, e.g. `openwrt-rak7268cv2`.
 is this template plus:
 
 - `devices/<board>/<name>.dts` and `devices/<board>/openwrt.patch`
+- optionally a `.dtsi` the DTS includes, and `devices/<board>/package/`, an
+  OpenWrt package for a kmod the release does not build. A kmod built in tree
+  would change the vermagic, so build it out of tree (`$(KERNEL_MAKE)
+  M=$(PKG_BUILD_DIR) modules`); `build.sh` adds it to the ImageBuilder's local
+  repository and stops if it did not build
 - the OpenWrt version, target and subtarget in `.github/workflows/build.yml`
 - a README with the device's hardware facts and how to install it
 
